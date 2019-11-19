@@ -2,6 +2,8 @@
 
 namespace Pubapi\Controllers;
 
+use Pubapi\Model\StorePost;
+
 class CreatePost
 {
     private $_title;
@@ -19,8 +21,9 @@ class CreatePost
 
     public function publishPost()
     {
-        header("Location: /");
+        $post = new StorePost();
+        $post->storePost($this->_title, $this->_content, $this->_user);
 
-        return false;
+        header("Location: /");
     }
 }

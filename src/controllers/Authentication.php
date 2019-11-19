@@ -18,6 +18,7 @@ class Authentication
     {
         if ($this->_username == 'admin' && $this->_password == 'admin') {
             $_SESSION['loggedIn'] = true;
+            $_SESSION['user'] = 'admin';
 
             header("Location: /");
             return true;

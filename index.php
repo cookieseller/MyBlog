@@ -6,6 +6,8 @@
 
 require 'vendor/autoload.php';
 
+use Pubapi\Controllers\CreatePost;
+use Pubapi\Controllers\Authentication;
 session_start();
 
 $router = new Router();
@@ -36,7 +38,7 @@ $router->get('/logout', function() {
 });
 
 $router->post('/verify', function() {
-    $auth = new Pubapi\Controllers\Authentication($_REQUEST);
+    $auth = new Authentication($_REQUEST);
     $ret = $auth->verify();
 });
 
@@ -45,5 +47,6 @@ $router->get('/post', function() {
 });
 
 $router->post('/post', function() {
-  include 'src/public/views/post.html';
+  $post = new CreatePost($_REQUEST);
+  $post->publishPost();
 });
